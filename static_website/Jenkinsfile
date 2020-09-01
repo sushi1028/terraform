@@ -1,0 +1,24 @@
+pipeline {
+ agent any
+ 
+ stages {
+    stage('Set Terraform path') {    // This is option step.
+        steps {
+            script {
+                def tfHome = tool name: 'Terraform'
+                env.PATH = "${tfHome}:${env.PATH}"
+            }
+            sh 'terraform  -version'
+ 
+        }
+    }
+    stage('Deploy to aws') {
+        steps {
+                sh 'terraform init'
+                sh 'terraform plan -out=plan'
+                sh 'terraform destroy -auto-approve'
+                sh 'terraform apply plan -auto-approve' 
+        }
+    }
+  }
+}
