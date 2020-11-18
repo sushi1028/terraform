@@ -1,0 +1,13 @@
+{
+    "Version": "2012-10-17",
+    "Id": "Policy1605273643810",
+    "Statement": [
+        {
+            "Sid": "Stmt1605273641660",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:*",
+            "Resource": "arn:aws:s3:::userzero-alb-logging/*" # put your bucket name here
+        }
+    ]
+}
